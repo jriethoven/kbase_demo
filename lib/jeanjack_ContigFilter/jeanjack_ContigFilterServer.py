@@ -64,6 +64,9 @@ async_check_methods = {}
 async_run_methods['jeanjack_ContigFilter.filter_contigs_async'] = ['jeanjack_ContigFilter', 'filter_contigs']
 async_check_methods['jeanjack_ContigFilter.filter_contigs_check'] = ['jeanjack_ContigFilter', 'filter_contigs']
 sync_methods['jeanjack_ContigFilter.filter_contigs'] = True
+async_run_methods['jeanjack_ContigFilter.filter_contigs_max_async'] = ['jeanjack_ContigFilter', 'filter_contigs_max']
+async_check_methods['jeanjack_ContigFilter.filter_contigs_max_check'] = ['jeanjack_ContigFilter', 'filter_contigs_max']
+sync_methods['jeanjack_ContigFilter.filter_contigs_max'] = True
 
 class AsyncJobServiceClient(object):
 
@@ -339,6 +342,10 @@ class Application(object):
                              name='jeanjack_ContigFilter.filter_contigs',
                              types=[dict])
         self.method_authentication['jeanjack_ContigFilter.filter_contigs'] = 'required'
+        self.rpc_service.add(impl_jeanjack_ContigFilter.filter_contigs_max,
+                             name='jeanjack_ContigFilter.filter_contigs_max',
+                             types=[dict])
+        self.method_authentication['jeanjack_ContigFilter.filter_contigs_max'] = 'required'
         self.auth_client = biokbase.nexus.Client(
             config={'server': 'nexus.api.globusonline.org',
                     'verify_ssl': True,
